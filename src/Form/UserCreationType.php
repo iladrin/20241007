@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,7 @@ class UserCreationType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('email')
-            ->add('dateOfBirth', null, [
+            ->add('dateOfBirth', BirthdayType::class, [
                 'widget' => 'single_text'
             ])
             ->add('submit', SubmitType::class, [

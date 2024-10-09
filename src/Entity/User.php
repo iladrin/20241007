@@ -24,6 +24,9 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
+
+    private UserClass $class;
+
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 

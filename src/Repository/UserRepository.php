@@ -16,20 +16,34 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    //    /**
-    //     * @return User[] Returns an array of User objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('u.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findUserWithClass()
+    {
+        $dql = <<< DQL
+            SELECT u, c
+            FROM App\Entity\User u
+            JOIN u.class c
+        DQL;
+
+        return $this->getEntityManager()
+            ->createQuery('SELECT u FROM App\Entity\User u WHERE u.firstName LIKE :firstName')
+            ->setParameter('firstName', 'xxx')
+            ->getOneOrNullResult();
+    }
+
+        /**
+         * @return User[] Returns an array of User objects
+         */
+        public function findByExampleField($value): array
+        {
+            return $this->createQueryBuilder('u')
+                ->andWhere('u.exampleField = :val')
+                ->setParameter('val', $value)
+                ->orderBy('u.id', 'ASC')
+                ->setMaxResults(10)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
 
     //    public function findOneBySomeField($value): ?User
     //    {

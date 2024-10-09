@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\ContactHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,10 +23,12 @@ class MainController extends AbstractController
         return $this->render('main/contact.html.twig', []);
     }
 
-    #[Route('/user', name: 'app_contact_post', methods: ['POST'])]
-    public function contactPost(Request $request): Response
+    #[Route('/contact', name: 'app_contact_post', methods: ['POST'])]
+    public function contactPost(Request $request, ContactHandler $handler): Response
     {
-        dump($request->request->all());
+        $data = dump($request->request->all());
+        $handler->handle($data);
+
         return $this->redirectToRoute('app_homepage');
     }
 }

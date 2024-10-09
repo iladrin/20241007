@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\UserCreationType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -32,11 +34,11 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/{userId<\d+>}', name: 'app_user_show', methods: ['GET'])]
-    public function show(int $userId): Response
-    {
-        dump($userId);
-
-        return $this->render('user/create.html.twig', []);
-    }
+//    #[Route('/user/{user<\d+>}', name: 'app_user_show', methods: ['GET'])]
+//    public function show(User $user): Response
+//    {
+//        return $this->render('user/show.html.twig', [
+//            'user' => $user,
+//        ]);
+//    }
 }
