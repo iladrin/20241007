@@ -1,0 +1,10 @@
+@startuml
+
+class User {
+  firstName
+  lastName
+  email
+  dateOfBirth
+}
+
+@enduml
